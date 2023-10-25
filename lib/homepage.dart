@@ -16,13 +16,41 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home Page'),
+        actions: [CustomSwitcher()],
       ),
-      body: Center(
-        child: Switch(
-          value: AppController.instance.isDartTheme,
-          onChanged: (value) {
-            AppController.instance.changeTheme();
-          },
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: ListView(
+          children: [
+            Text('Contador: $counter'),
+            CustomSwitcher(),
+            Container(
+              height: 50,
+              width: 50,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  height: 50,
+                  width: 50,
+                  color: Colors.black,
+                ),
+                Container(
+                  height: 50,
+                  width: 50,
+                  color: Colors.black,
+                ),
+                Container(
+                  height: 50,
+                  width: 50,
+                  color: Colors.black,
+                )
+              ],
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -33,6 +61,18 @@ class HomePageState extends State<HomePage> {
         },
         child: Icon(Icons.add),
       ),
+    );
+  }
+}
+
+class CustomSwitcher extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Switch(
+      value: AppController.instance.isDartTheme,
+      onChanged: (value) {
+        AppController.instance.changeTheme();
+      },
     );
   }
 }
