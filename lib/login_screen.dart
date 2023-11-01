@@ -12,17 +12,22 @@ class _LoginPageState extends State<LoginPage> {
   String email = '';
   String password = '';
 
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      child: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
+  Widget _body() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+            width: 300,
+            height: 300,
+            child: Image.asset('assets/images/cv.png')),
+        Container(
+          height: 20,
+        ),
+        Card(
+            child: Padding(
+          padding: const EdgeInsets.all(12.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               TextField(
                 onChanged: (text) {
@@ -31,6 +36,9 @@ class _LoginPageState extends State<LoginPage> {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                     labelText: 'E-mail', border: OutlineInputBorder()),
+              ),
+              Container(
+                height: 20,
               ),
               TextField(
                 onChanged: (text) {
@@ -49,13 +57,40 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => HomePage()));
                     } else {
-                      print('login inválido');
+                      AlertDialog(
+                        title: const Text('login inváliudo'),
+                        content: Text('hello'),
+                      );
                     }
                   },
-                  child: Text('Entrar')),
+                  child: Container(
+                      width: double.infinity,
+                      child: Text(
+                        'Entrar',
+                        textAlign: TextAlign.center,
+                      ))),
             ],
           ),
+        )),
+        Container(
+          height: 20,
         ),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Image.asset('assets/images/background.jpg',
+                  fit: BoxFit.cover)),
+          Container(color: Colors.black.withOpacity(0.3)),
+          _body(),
+        ],
       ),
     );
   }

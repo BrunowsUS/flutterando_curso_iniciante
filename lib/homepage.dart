@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterando_aula/app_controller.dart';
+import 'package:flutterando_aula/login_screen.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,6 +15,23 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(Object context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          children: [
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Inicio'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.exit_to_app),
+              title: Text('Saida'),
+              onTap: () {
+              },
+            )
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: Text('Home Page'),
         actions: [CustomSwitcher()],
